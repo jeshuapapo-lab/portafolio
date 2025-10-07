@@ -1,0 +1,17 @@
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* Slate 900 */
+            color: #E2E8F0; /* Texto claro */
+        }
+        .bg-card { background-color: #1E293B; } /* Slate 800 */
+        .text-accent { color: #818CF8; } /* Indigo 400 */
+        .bg-accent { background-color: #6366F1; } /* Indigo 500 */
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
