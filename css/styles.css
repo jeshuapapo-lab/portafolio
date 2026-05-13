@@ -1,0 +1,61 @@
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #22d3ee, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -10px rgba(34, 211, 238, 0.3);
+}
+
+.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #22d3ee;
+    transition: width .3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+#canvas-container {
+    filter: drop-shadow(0 0 15px rgba(34, 211, 238, 0.4));
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.js-logo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
+    pointer-events: none;
+    letter-spacing: -5px;
+}
