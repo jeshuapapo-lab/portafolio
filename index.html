@@ -3,203 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeshua Sánchez | Perfil Profesional de Alto Rendimiento</title>
+    <title>Jeshua Sánchez | Portafolio Técnico</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .gradient-text {
-            background: linear-gradient(90deg, #22d3ee, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .tech-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px -10px rgba(34, 211, 238, 0.3);
-        }
-        .nav-link::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: #22d3ee;
-            transition: width .3s;
-        }
+        .gradient-text { background: linear-gradient(90deg, #22d3ee, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .tech-card { transition: transform .3s, box-shadow .3s, border-color .3s; }
+        .tech-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(34, 211, 238, 0.3); }
+        .nav-link::after { content: ''; display: block; width: 0; height: 2px; background: #22d3ee; transition: width .3s; }
         .nav-link:hover::after { width: 100%; }
         #canvas-container { filter: drop-shadow(0 0 15px rgba(34, 211, 238, 0.4)); }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
-        .js-logo-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 5rem;
-            font-weight: 900;
-            color: white;
-            text-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
-            pointer-events: none;
-            letter-spacing: -5px;
-        }
+        .js-logo-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: clamp(3rem, 8vw, 5rem); font-weight: 900; color: white; text-shadow: 0 0 20px rgba(34, 211, 238, 0.8); pointer-events: none; letter-spacing: -5px; }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100 selection:bg-cyan-500/30">
-
-    <header class="fixed w-full top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
-        <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-extrabold tracking-tighter">
-                JESHUA<span class="text-cyan-400">SÁNCHEZ</span>
-            </div>
-            <ul class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-zinc-400">
-                <li><a href="#inicio" class="nav-link hover:text-white transition">Inicio</a></li>
-                <li><a href="#perfil" class="nav-link hover:text-white transition">Perfil</a></li>
-                <li><a href="#arsenal" class="nav-link hover:text-white transition">Arsenal</a></li>
-                <li><a href="#proyectos" class="nav-link hover:text-white transition">Proyectos</a></li>
-                <li><a href="#contacto" class="px-4 py-2 bg-cyan-500 text-zinc-950 rounded-full font-bold hover:bg-cyan-400 transition-colors">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="inicio" class="min-h-[82vh] flex items-center pt-20 pb-10 px-6 max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12 items-center w-full animate-fade-in">
-                <div>
-                    <span class="inline-block px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold mb-6 tracking-widest uppercase">
-                        IA & Desarrollo de Alto Rendimiento
-                    </span>
-                    <h1 class="text-6xl lg:text-8xl font-extrabold mb-6 leading-tight">
-                        Jeshua <br><span class="gradient-text">Sánchez</span>
-                    </h1>
-                    <p class="text-xl font-light text-zinc-400 mb-10 italic">
-                        “Tecnología, creatividad e innovación aplicadas a soluciones reales.”
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#proyectos" class="px-8 py-4 bg-cyan-500 text-zinc-950 rounded-xl font-bold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20">Ver Proyectos</a>
-                        <a href="#arsenal" class="px-8 py-4 border border-zinc-700 rounded-xl font-bold hover:border-cyan-500 transition-all">Explorar Arsenal</a>
-                    </div>
-                </div>
-                <div class="relative flex justify-center items-center h-[320px] lg:h-[430px]" id="canvas-container">
-                    <div class="js-logo-overlay">JS</div>
-                    <div id="three-container" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="perfil" class="py-24 bg-zinc-900/30 border-y border-zinc-900">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-                    <div>
-                        <h2 class="text-sm font-bold text-cyan-400 uppercase tracking-[0.3em] mb-2">Educación e Investigación</h2>
-                        <h3 class="text-4xl font-bold">Perfil Académico</h3>
-                    </div>
-                    <div class="text-zinc-500 font-medium">U.E. Montepiedra</div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div class="space-y-8">
-                        <div class="p-8 bg-zinc-900 rounded-2xl border-l-4 border-cyan-500 shadow-xl">
-                            <h4 class="text-xl font-bold mb-4">Bachiller Técnico en Informática</h4>
-                            <p class="text-zinc-400 leading-relaxed">Técnico especializado en la creación de soluciones informáticas modernas, infraestructura de redes y optimización de procesos mediante IA.</p>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="p-6 border border-zinc-800 rounded-xl"><i class="fas fa-microchip text-cyan-500 mb-4 text-2xl"></i><h5 class="font-bold mb-2">I+D Técnico</h5><p class="text-sm text-zinc-500">Documentación técnica con normas APA y proyectos innovadores.</p></div>
-                            <div class="p-6 border border-zinc-800 rounded-xl"><i class="fas fa-robot text-cyan-500 mb-4 text-2xl"></i><h5 class="font-bold mb-2">Especialista IA</h5><p class="text-sm text-zinc-500">Arquitectura de prompts y automatización inteligente.</p></div>
-                        </div>
-                    </div>
-                    <div class="bg-zinc-900/50 p-8 rounded-3xl border border-zinc-800">
-                        <h4 class="text-xl font-bold mb-6">Competencias de Formación</h4>
-                        <ul class="space-y-4">
-                            <li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><span class="text-zinc-300">Desarrollo Web Frontend y Backend</span></li>
-                            <li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><span class="text-zinc-300">Prompt Engineering & Automatización IA</span></li>
-                            <li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><span class="text-zinc-300">Configuración y simulación de redes Cisco</span></li>
-                            <li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><span class="text-zinc-300">Programación (Java, Python, C++, PHP)</span></li>
-                            <li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><span class="text-zinc-300">Diseño técnico y prototipado digital</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="arsenal" class="py-24 max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20"><h2 class="text-4xl lg:text-5xl font-black mb-4 uppercase tracking-tighter italic">Arsenal Técnico</h2><div class="w-24 h-1 bg-cyan-500 mx-auto rounded-full shadow-[0_0_10px_#22d3ee]"></div></div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-8 bg-zinc-900 rounded-3xl border border-cyan-500/40 tech-card transition-all duration-300 ring-2 ring-cyan-500/10"><div class="w-14 h-14 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-brain text-cyan-400 text-2xl animate-pulse"></i></div><h4 class="text-lg font-bold mb-4 italic text-cyan-400">IA & Prompts</h4><ul class="text-sm text-zinc-300 space-y-2"><li>• Diseño de Prompts Avanzados</li><li>• IA Generativa (LLMs)</li><li>• Automatización de Flujos</li><li>• Optimización de Código</li></ul></div>
-                <div class="p-8 bg-zinc-900 rounded-3xl border border-zinc-800 tech-card transition-all duration-300"><div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-code text-indigo-400 text-2xl"></i></div><h4 class="text-lg font-bold mb-4 italic">Desarrollo Software</h4><ul class="text-sm text-zinc-500 space-y-2"><li>• HTML5 / CSS3 / JS</li><li>• PHP & MySQL</li><li>• Java / Python / C++</li><li>• VS Code / Android Studio</li></ul></div>
-                <div class="p-8 bg-zinc-900 rounded-3xl border border-zinc-800 tech-card transition-all duration-300"><div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-server text-blue-400 text-2xl"></i></div><h4 class="text-lg font-bold mb-4 italic">Infraestructura</h4><ul class="text-sm text-zinc-500 space-y-2"><li>• Cisco Packet Tracer</li><li>• VLANs & OSPF</li><li>• Cableado estructurado</li><li>• Servicios DNS / DHCP</li></ul></div>
-                <div class="p-8 bg-zinc-900 rounded-3xl border border-zinc-800 tech-card transition-all duration-300"><div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-paint-brush text-purple-400 text-2xl"></i></div><h4 class="text-lg font-bold mb-4 italic">Diseño Técnico</h4><ul class="text-sm text-zinc-500 space-y-2"><li>• Prototipado UI/UX</li><li>• Figma & Adobe Suite</li><li>• Documentación Técnica</li><li>• Páginas Interactivas</li></ul></div>
-            </div>
-        </section>
-
-        <section id="proyectos" class="py-24 bg-zinc-950">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="mb-16"><h2 class="text-sm font-bold text-cyan-400 uppercase tracking-[0.3em] mb-2">Logros y Resultados</h2><h3 class="text-4xl font-bold">Proyectos Destacados</h3></div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-cyan-500/50 transition-all"><div class="h-48 overflow-hidden bg-zinc-800 flex items-center justify-center"><i class="fas fa-database text-6xl text-cyan-500/20 group-hover:scale-125 transition-transform duration-500"></i></div><div class="p-8"><div class="flex gap-2 mb-4"><span class="px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">PHP</span><span class="px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">MySQL</span></div><h4 class="text-xl font-bold mb-3">Sistema de Inventarios Full-Stack</h4><p class="text-zinc-500 text-sm leading-relaxed">Aplicación robusta para control de stock y ventas con roles de administrador y reportes dinámicos.</p></div></div>
-                    <div class="group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-cyan-500/50 transition-all"><div class="h-48 overflow-hidden bg-zinc-800 flex items-center justify-center"><i class="fas fa-network-wired text-6xl text-cyan-500/20 group-hover:scale-125 transition-transform duration-500"></i></div><div class="p-8"><div class="flex gap-2 mb-4"><span class="px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">Cisco</span><span class="px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">IoT</span></div><h4 class="text-xl font-bold mb-3">Infraestructura Multiservicio</h4><p class="text-zinc-500 text-sm leading-relaxed">Diseño y simulación de red con VLANs, servidores DNS/DHCP e integración de domótica.</p></div></div>
-                    <div class="group bg-zinc-900 rounded-3xl overflow-hidden border border-cyan-500/30 ring-1 ring-cyan-500/20 hover:border-cyan-400 transition-all"><div class="h-48 overflow-hidden bg-zinc-800 flex items-center justify-center"><i class="fas fa-brain text-6xl text-cyan-400/30 group-hover:scale-125 transition-transform duration-500"></i></div><div class="p-8"><div class="flex gap-2 mb-4"><span class="px-2 py-1 bg-cyan-900/50 rounded text-[10px] font-bold text-cyan-400">PROMPTS</span><span class="px-2 py-1 bg-cyan-900/50 rounded text-[10px] font-bold text-cyan-400">LLMS</span></div><h4 class="text-xl font-bold mb-3 text-cyan-400">Ingeniería de Prompts Aplicada</h4><p class="text-zinc-500 text-sm leading-relaxed">Optimización de flujos de trabajo técnicos mediante arquitectura de prompts para generación de código y documentación.</p></div></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-24 max-w-7xl mx-auto px-6"><div class="bg-gradient-to-br from-zinc-900 to-black p-12 lg:p-20 rounded-[3rem] border border-zinc-800 text-center"><h2 class="text-sm font-bold text-cyan-400 uppercase tracking-[0.3em] mb-6">Visión de Emprendimiento</h2><h3 class="text-4xl lg:text-6xl font-black mb-8 leading-tight">Jeshua Sánchez <br> <span class="gradient-text">Soluciones Tecnológicas</span></h3><p class="text-zinc-400 text-lg lg:text-xl max-w-3xl mx-auto mb-12 leading-relaxed">Combino creatividad y IA para entregar soluciones modernas que otros consideran complejas. Mi enfoque está en la eficiencia y la innovación constante.</p><div class="inline-flex items-center gap-8 text-zinc-500 font-bold uppercase text-xs tracking-widest"><span>Innovación</span><span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span><span>Eficiencia</span><span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span><span>Resultados</span></div></div></section>
-    </main>
-
-    <footer id="contacto" class="bg-zinc-900/50 pt-24 pb-12 px-6 border-t border-zinc-800"><div class="max-w-7xl mx-auto"><div class="grid lg:grid-cols-2 gap-20 mb-20"><div><h3 class="text-4xl font-bold mb-6">¿Listo para innovar?</h3><p class="text-zinc-400 text-lg mb-8">Disponible para consultoría en IA, redes y desarrollo web.</p><div class="space-y-4"><a href="mailto:contacto@jeshuatech.com" class="flex items-center gap-4 text-xl font-semibold hover:text-cyan-400 transition"><i class="far fa-envelope text-cyan-500"></i> contacto@jeshuatech.com</a><a href="https://wa.me/593983394821" class="flex items-center gap-4 text-xl font-semibold hover:text-emerald-400 transition"><i class="fab fa-whatsapp text-emerald-500"></i> +593 983 394 821</a></div></div><div><div class="bg-zinc-950 p-8 rounded-3xl border border-zinc-800"><h4 class="text-xl font-bold mb-8">Redes Profesionales</h4><div class="flex flex-col gap-4"><a href="https://github.com/jeshuapapo-lab" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center p-4 bg-zinc-900 rounded-xl hover:bg-zinc-800 transition"><span class="flex items-center gap-3"><i class="fab fa-github text-2xl"></i> GitHub</span><i class="fas fa-arrow-right text-zinc-600"></i></a><a href="https://linkedin.com/in/jeshua-sanchez" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center p-4 bg-zinc-900 rounded-xl hover:bg-zinc-800 transition"><span class="flex items-center gap-3"><i class="fab fa-linkedin text-2xl text-blue-500"></i> LinkedIn</span><i class="fas fa-arrow-right text-zinc-600"></i></a></div></div></div></div><div class="border-t border-zinc-800 pt-12 text-center"><div class="text-zinc-500 text-sm">© 2024 Jeshua Sánchez. Perfil Profesional de Alto Rendimiento.</div></div></div></footer>
-
-    <script>
-        const container = document.getElementById('three-container');
-        if (container && typeof THREE !== 'undefined') {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(container.clientWidth, container.clientHeight);
-            container.appendChild(renderer.domElement);
-            const geometry = new THREE.IcosahedronGeometry(1, 1);
-            const material = new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: 0.5 });
-            const mesh = new THREE.Mesh(geometry, material);
-            scene.add(mesh);
-            const particlesGeometry = new THREE.BufferGeometry();
-            const particlesCount = 500;
-            const posArray = new Float32Array(particlesCount * 3);
-            for(let i = 0; i < particlesCount * 3; i++) posArray[i] = (Math.random() - 0.5) * 5;
-            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-            const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0x818cf8, transparent: true, opacity: 0.8 });
-            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-            scene.add(particlesMesh);
-            camera.position.z = 3;
-            let mouseX = 0;
-            let mouseY = 0;
-            document.addEventListener('mousemove', (e) => {
-                mouseX = (e.clientX / window.innerWidth) - 0.5;
-                mouseY = (e.clientY / window.innerHeight) - 0.5;
-            });
-            function animate() {
-                requestAnimationFrame(animate);
-                mesh.rotation.x += 0.005;
-                mesh.rotation.y += 0.005;
-                particlesMesh.rotation.y += 0.001;
-                mesh.rotation.x += mouseY * 0.05;
-                mesh.rotation.y += mouseX * 0.05;
-                renderer.render(scene, camera);
-            }
-            animate();
-            window.addEventListener('resize', () => {
-                camera.aspect = container.clientWidth / container.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.clientWidth, container.clientHeight);
-            });
-        }
-        const observerOptions = { threshold: 0.1 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('animate-fade-in');
-            });
-        }, observerOptions);
-        document.querySelectorAll('section').forEach(section => observer.observe(section));
-    </script>
+<header class="fixed w-full top-0 z-50 bg-zinc-950/85 backdrop-blur-md border-b border-zinc-800">
+<nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center gap-4">
+<a href="#inicio" class="text-lg sm:text-xl font-extrabold tracking-tighter">JESHUA<span class="text-cyan-400">SÁNCHEZ</span></a>
+<ul class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest text-zinc-400">
+<li><a href="#inicio" class="nav-link hover:text-white transition">Inicio</a></li><li><a href="#perfil" class="nav-link hover:text-white transition">Perfil</a></li><li><a href="#arsenal" class="nav-link hover:text-white transition">Habilidades</a></li><li><a href="#proyectos" class="nav-link hover:text-white transition">Proyectos</a></li><li><a href="#contacto" class="px-4 py-2 bg-cyan-500 text-zinc-950 rounded-full font-bold hover:bg-cyan-400 transition-colors">Contacto</a></li>
+</ul></nav></header>
+<main>
+<section id="inicio" class="min-h-[82vh] flex items-center pt-24 pb-10 px-4 sm:px-6 max-w-7xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center w-full animate-fade-in">
+<div><span class="inline-block px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-bold mb-6 tracking-widest uppercase">Portafolio Técnico</span>
+<h1 class="text-5xl sm:text-6xl lg:text-8xl font-extrabold mb-6 leading-tight">Jeshua <br><span class="gradient-text">Sánchez</span></h1>
+<p class="text-lg sm:text-xl font-light text-zinc-400 mb-8 max-w-2xl">Estudiante técnico en informática enfocado en desarrollo web, redes, documentación técnica y automatización con inteligencia artificial.</p>
+<div class="flex flex-wrap gap-4"><a href="#proyectos" class="px-7 py-4 bg-cyan-500 text-zinc-950 rounded-xl font-bold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20">Ver proyectos</a><a href="https://github.com/jeshuapapo-lab" target="_blank" rel="noopener noreferrer" class="px-7 py-4 border border-zinc-700 rounded-xl font-bold hover:border-cyan-500 transition-all">GitHub</a><a href="#contacto" class="px-7 py-4 border border-zinc-700 rounded-xl font-bold hover:border-cyan-500 transition-all">Contacto</a></div></div>
+<div class="relative flex justify-center items-center h-[300px] sm:h-[340px] lg:h-[430px]" id="canvas-container"><div class="js-logo-overlay">JS</div><div id="three-container" class="w-full h-full cursor-grab active:cursor-grabbing"></div></div>
+</div></section>
+<section id="perfil" class="py-20 sm:py-24 bg-zinc-900/30 border-y border-zinc-900"><div class="max-w-7xl mx-auto px-4 sm:px-6"><div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4"><div><h2 class="text-sm font-bold text-cyan-400 uppercase tracking-[0.3em] mb-2">Sobre mí</h2><h3 class="text-3xl sm:text-4xl font-bold">Perfil académico y técnico</h3></div><div class="text-zinc-500 font-medium">Unidad Educativa Montepiedra</div></div><div class="grid md:grid-cols-2 gap-8 lg:gap-12"><div class="space-y-6"><div class="p-6 sm:p-8 bg-zinc-900 rounded-2xl border-l-4 border-cyan-500 shadow-xl"><h4 class="text-xl font-bold mb-4">Bachiller Técnico en Informática</h4><p class="text-zinc-400 leading-relaxed">Me interesa construir soluciones que se entiendan, funcionen y puedan mantenerse. Trabajo con páginas web, bases de datos, redes simuladas y herramientas de IA para acelerar tareas técnicas sin perder orden.</p></div><div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><a href="https://developer.mozilla.org/es/" target="_blank" rel="noopener noreferrer" class="p-6 border border-zinc-800 rounded-xl hover:border-cyan-500 transition"><i class="fas fa-globe text-cyan-500 mb-4 text-2xl"></i><h5 class="font-bold mb-2">Desarrollo Web</h5><p class="text-sm text-zinc-500">HTML, CSS, JavaScript y estructura responsive.</p></a><a href="https://www.netacad.com/" target="_blank" rel="noopener noreferrer" class="p-6 border border-zinc-800 rounded-xl hover:border-cyan-500 transition"><i class="fas fa-network-wired text-cyan-500 mb-4 text-2xl"></i><h5 class="font-bold mb-2">Redes</h5><p class="text-sm text-zinc-500">Prácticas con Cisco, DHCP, DNS y subredes.</p></a></div></div><div class="bg-zinc-900/50 p-6 sm:p-8 rounded-3xl border border-zinc-800"><h4 class="text-xl font-bold mb-6">Áreas que manejo</h4><ul class="space-y-4"><li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><a class="text-zinc-300 hover:text-cyan-400" href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener noreferrer">HTML, CSS y JavaScript</a></li><li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><a class="text-zinc-300 hover:text-cyan-400" href="https://www.php.net/" target="_blank" rel="noopener noreferrer">PHP y MySQL para sistemas básicos</a></li><li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><a class="text-zinc-300 hover:text-cyan-400" href="https://www.netacad.com/cisco-packet-tracer" target="_blank" rel="noopener noreferrer">Cisco Packet Tracer y redes</a></li><li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><a class="text-zinc-300 hover:text-cyan-400" href="https://docs.github.com/es" target="_blank" rel="noopener noreferrer">GitHub y publicación web</a></li><li class="flex items-center gap-3"><span class="w-2 h-2 bg-cyan-500 rounded-full"></span><a class="text-zinc-300 hover:text-cyan-400" href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">Diseño, prototipado y documentación</a></li></ul></div></div></div></section>
+<section id="arsenal" class="py-20 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6"><div class="text-center mb-16"><h2 class="text-3xl sm:text-5xl font-black mb-4 uppercase tracking-tighter italic">Habilidades</h2><div class="w-24 h-1 bg-cyan-500 mx-auto rounded-full shadow-[0_0_10px_#22d3ee]"></div></div><div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"><a href="https://openai.com/" target="_blank" rel="noopener noreferrer" class="p-8 bg-zinc-900 rounded-3xl border border-cyan-500/40 tech-card ring-2 ring-cyan-500/10"><div class="w-14 h-14 bg-cyan-500/20 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-brain text-cyan-400 text-2xl"></i></div><h4 class="text-lg font-bold mb-4 italic text-cyan-400">IA & Prompts</h4><p class="text-sm text-zinc-400">Uso de IA para apoyar investigación, código, documentación y organización de ideas.</p></a><a href="https://developer.mozilla.org/es/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="p-8 bg-zinc-900 rounded-3xl border border-zinc-800 tech-card"><div class="w-14 h-14 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-code text-indigo-400 text-2xl"></i></div><h4 class="text-lg font-bold mb-4 italic">Desarrollo</h4><p class="text-sm text-zinc-500">Sitios web, formularios, interfaces, lógica básica y estructura de proyectos.</p></a><a href="https://www.netacad.com/cisco-packet-tracer" target="_blank" rel="noopener noreferrer" class="p-8 bg-zinc-900 rounded-3xl border border-zinc-800 tech-card"><div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-server text-blue-400 text-2xl"></i></div><h4 class="text-lg font-bold mb-4 italic">Infraestructura</h4><p class="text-sm text-zinc-500">Simulación de redes, subredes, servicios DNS/DHCP y conectividad.</p></a><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer" class="p-8 bg-zinc-900 rounded-3xl border border-zinc-800 tech-card"><div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6"><i class="fas fa-paint-brush text-purple-400 text-2xl"></i></div><h4 class="text-lg font-bold mb-4 italic">Diseño</h4><p class="text-sm text-zinc-500">Diseño visual, presentación de contenido, prototipos y documentación.</p></a></div></section>
+<section id="proyectos" class="py-20 sm:py-24 bg-zinc-950"><div class="max-w-7xl mx-auto px-4 sm:px-6"><div class="mb-12"><h2 class="text-sm font-bold text-cyan-400 uppercase tracking-[0.3em] mb-2">Práctica técnica</h2><h3 class="text-3xl sm:text-4xl font-bold">Proyectos destacados</h3></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><a href="https://github.com/jeshuapapo-lab/portafolio" target="_blank" rel="noopener noreferrer" class="group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-cyan-500/50 transition-all"><div class="h-48 bg-zinc-800 flex items-center justify-center"><i class="fas fa-id-card text-6xl text-cyan-500/20 group-hover:scale-125 transition-transform duration-500"></i></div><div class="p-8"><div class="flex gap-2 mb-4"><span class="px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">HTML</span><span class="px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">CSS</span><span class="px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">JS</span></div><h4 class="text-xl font-bold mb-3">Portafolio Web</h4><p class="text-zinc-500 text-sm leading-relaxed">Sitio personal publicado con GitHub Pages, diseño oscuro y logo 3D.</p></div></a><a href="https://www.netacad.com/cisco-packet-tracer" target="_blank" rel="noopener noreferrer" class="group bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 hover:border-cyan-500/50 transition-all"><div class="h-48 bg-zinc-800 flex items-center justify-center"><i class="fas fa-network-wired text-6xl text-cyan-500/20 group-hover:scale-125 transition-transform duration-500"></i></div><div class="p-8"><div class="flex gap-2 mb-4"><span class="px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">Cisco</span><span class="px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">Redes</span></div><h4 class="text-xl font-bold mb-3">Infraestructura Multiservicio</h4><p class="text-zinc-500 text-sm leading-relaxed">Diseño de redes con VLANs, DNS, DHCP y pruebas de conectividad.</p></div></a><a href="https://docs.github.com/es/pages" target="_blank" rel="noopener noreferrer" class="group bg-zinc-900 rounded-3xl overflow-hidden border border-cyan-500/30 ring-1 ring-cyan-500/20 hover:border-cyan-400 transition-all"><div class="h-48 bg-zinc-800 flex items-center justify-center"><i class="fas fa-cloud-upload-alt text-6xl text-cyan-400/30 group-hover:scale-125 transition-transform duration-500"></i></div><div class="p-8"><div class="flex gap-2 mb-4"><span class="px-2 py-1 bg-cyan-900/50 rounded text-[10px] font-bold text-cyan-400">GITHUB</span><span class="px-2 py-1 bg-cyan-900/50 rounded text-[10px] font-bold text-cyan-400">PAGES</span></div><h4 class="text-xl font-bold mb-3 text-cyan-400">Publicación Web</h4><p class="text-zinc-500 text-sm leading-relaxed">Organización de repositorios, despliegue y actualización de sitios estáticos.</p></div></a></div></div></section>
+<section class="py-20 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6"><div class="bg-gradient-to-br from-zinc-900 to-black p-8 sm:p-12 lg:p-20 rounded-[2rem] sm:rounded-[3rem] border border-zinc-800 text-center"><h2 class="text-sm font-bold text-cyan-400 uppercase tracking-[0.3em] mb-6">Objetivo</h2><h3 class="text-3xl sm:text-5xl lg:text-6xl font-black mb-8 leading-tight">Crear soluciones <br><span class="gradient-text">útiles y claras</span></h3><p class="text-zinc-400 text-base sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed">Mi meta es seguir creciendo como técnico informático, unir creatividad con práctica real y construir proyectos que puedan presentarse, probarse y mejorarse.</p><div class="inline-flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-zinc-500 font-bold uppercase text-xs tracking-widest"><span>Aprendizaje</span><span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span><span>Orden</span><span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span><span>Resultados</span></div></div></section>
+</main>
+<footer id="contacto" class="bg-zinc-900/50 pt-20 sm:pt-24 pb-12 px-4 sm:px-6 border-t border-zinc-800"><div class="max-w-7xl mx-auto"><div class="grid lg:grid-cols-2 gap-12 lg:gap-20 mb-16"><div><h3 class="text-3xl sm:text-4xl font-bold mb-6">Contacto</h3><p class="text-zinc-400 text-lg mb-8">Puedes revisar mi GitHub, escribirme por WhatsApp o usar el correo de contacto.</p><div class="space-y-4"><a href="mailto:contacto@jeshuatech.com" class="flex items-center gap-4 text-lg sm:text-xl font-semibold hover:text-cyan-400 transition"><i class="far fa-envelope text-cyan-500"></i> contacto@jeshuatech.com</a><a href="https://wa.me/593983394821" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 text-lg sm:text-xl font-semibold hover:text-emerald-400 transition"><i class="fab fa-whatsapp text-emerald-500"></i> +593 983 394 821</a></div></div><div><div class="bg-zinc-950 p-6 sm:p-8 rounded-3xl border border-zinc-800"><h4 class="text-xl font-bold mb-8">Enlaces</h4><div class="flex flex-col gap-4"><a href="https://github.com/jeshuapapo-lab" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center p-4 bg-zinc-900 rounded-xl hover:bg-zinc-800 transition"><span class="flex items-center gap-3"><i class="fab fa-github text-2xl"></i> GitHub</span><i class="fas fa-arrow-right text-zinc-600"></i></a><a href="https://jeshuapapo-lab.github.io/portafolio/" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center p-4 bg-zinc-900 rounded-xl hover:bg-zinc-800 transition"><span class="flex items-center gap-3"><i class="fas fa-globe text-2xl text-cyan-500"></i> Página publicada</span><i class="fas fa-arrow-right text-zinc-600"></i></a><a href="https://linkedin.com/in/jeshua-sanchez" target="_blank" rel="noopener noreferrer" class="flex justify-between items-center p-4 bg-zinc-900 rounded-xl hover:bg-zinc-800 transition"><span class="flex items-center gap-3"><i class="fab fa-linkedin text-2xl text-blue-500"></i> LinkedIn</span><i class="fas fa-arrow-right text-zinc-600"></i></a></div></div></div></div><div class="border-t border-zinc-800 pt-10 text-center"><div class="text-zinc-500 text-sm">© 2026 Jeshua Sánchez. Portafolio técnico.</div></div></div></footer>
+<script>
+const container = document.getElementById('three-container');
+if (container && typeof THREE !== 'undefined') {
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio || 1);
+renderer.setSize(container.clientWidth, container.clientHeight);
+container.appendChild(renderer.domElement);
+const geometry = new THREE.IcosahedronGeometry(1, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0x22d3ee, wireframe: true, transparent: true, opacity: 0.5 });
+const mesh = new THREE.Mesh(geometry, material); scene.add(mesh);
+const particlesGeometry = new THREE.BufferGeometry(); const particlesCount = 500; const posArray = new Float32Array(particlesCount * 3);
+for(let i = 0; i < particlesCount * 3; i++) posArray[i] = (Math.random() - 0.5) * 5;
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0x818cf8, transparent: true, opacity: 0.8 });
+const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial); scene.add(particlesMesh); camera.position.z = 3;
+let mouseX = 0; let mouseY = 0;
+document.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth) - 0.5; mouseY = (e.clientY / window.innerHeight) - 0.5; });
+function animate() { requestAnimationFrame(animate); mesh.rotation.x += 0.005; mesh.rotation.y += 0.005; particlesMesh.rotation.y += 0.001; mesh.rotation.x += mouseY * 0.02; mesh.rotation.y += mouseX * 0.02; renderer.render(scene, camera); }
+animate();
+window.addEventListener('resize', () => { if (!container.clientWidth || !container.clientHeight) return; camera.aspect = container.clientWidth / container.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(container.clientWidth, container.clientHeight); });
+}
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('animate-fade-in'); }); }, { threshold: 0.1 });
+document.querySelectorAll('section').forEach(section => observer.observe(section));
+</script>
 </body>
 </html>
